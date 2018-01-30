@@ -22,9 +22,9 @@ export const isPrime = (n) => {
       
       }
 
-      return true
-
     }
+
+    return true
 
   }  
 
