@@ -41,26 +41,26 @@ Codewar 是一個程式解題平台，上面充滿著各種開發者出的題目
 題目連結：https://www.codewars.com/kata/who-likes-it  
 題目說明：模擬 Facebook 按讚時或出現的文字
 
-### ❌ String repeat
+### ✅ String repeat
 題目連結：https://www.codewars.com/kata/string-repeat/javascript  
 題目說明：回傳重複 n 遍的字串
 
-### ❌ Build Tower
+### ✅ Build Tower
 題目連結：https://www.codewars.com/kata/build-tower  
 題目說明：
 也是依照規律輸出文字即可
 
-### ❌ Reversed Strings
+### ✅ Reversed Strings
 題目連結：https://www.codewars.com/kata/reversed-strings/javascript  
 題目說明：
 把輸入的文字反轉過後回傳，如果想挑戰自己的話，可以試試看用陣列的各種內建函式組合完成
 
-### ❌ Reversed Words
+### ✅ Reversed Words
 題目連結：https://www.codewars.com/kata/reversed-words  
 題目說明：
 這一題是進階版的字串反轉，原本的只要把每個「字元」反轉，這個則是要把每個「單字」反轉。
 
-### ❌ Alternate case
+### ✅ Alternate case
 題目連結：https://www.codewars.com/kata/alternate-case  
 題目說明：把大寫字母轉成小寫，小寫字母轉成大寫
 
