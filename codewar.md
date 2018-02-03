@@ -72,11 +72,11 @@ Codewar 是一個程式解題平台，上面充滿著各種開發者出的題目
 題目連結：https://www.codewars.com/kata/find-the-capitals-1/javascript  
 題目說明：回傳大寫字母所在的 index
 
-### ❌ Sum arrays
+### ✅ Sum arrays
 題目連結：https://www.codewars.com/kata/sum-arrays/javascript  
 題目說明：把陣列加總回傳結果
 
-### ❌ Find the smallest integer in the array
+### ✅ Find the smallest integer in the array
 題目連結：https://www.codewars.com/kata/find-the-smallest-integer-in-the-array   
 題目說明：找出陣列中最小的數字
 
