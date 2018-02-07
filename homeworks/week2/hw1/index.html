@@ -10,6 +10,7 @@
 
 		body{
 			margin:0;
+			font-family: sans-serif;
 		}
 
 		nav{
@@ -17,6 +18,9 @@
 			color: #FFFFFF;
 			margin:0;
 			width: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
 		}
 
 		.nav-title{
@@ -38,7 +42,12 @@
 			color: #A3A5A7;
 		}
 
+		.menu > ul > li > a:hover{
+			color: white;
+		}
+
 		.header{
+			margin-top: 50px;
 			background: #E9FAFF;
 		}
 
@@ -53,14 +62,20 @@
 		}
 
 		.btn-header{
-			background-color: #008CBA;
+			background-color: #1F7EF2;
 			color: white;
 			border: none;
 			border-radius: 5px;
 			padding: 15px 30px;
 			text-align: center;
 			font-size: 20px;
-			font-family: serif;
+			transition: background-color 0.3s;
+			-webkit-transition: background-color 0.3s;
+		}
+
+		.btn-header:hover{
+			background-color: #0060D5;
+
 		}
 
 		.pack{
@@ -80,7 +95,13 @@
 			padding: 12px 20px;
 			text-align: center;
 			font-size: 16px;
-			font-family: serif;
+			transition: background-color 0.3s;
+			-webkit-transition: background-color 0.3s;
+		}
+
+		.btn-pack:hover{
+			background-color: #7A7A7A;
+
 		}
 
 		footer{
@@ -113,8 +134,8 @@
 		<div class = "nav-title">Navbar</div>
 		<div class = "menu">
 			<ul>
-				<li>Home</li>
-				<li>Link</li>
+				<li><a>Home</a></li>
+				<li><a>Link</a></li>
 			</ul>
 		</div>
 	</nav>
