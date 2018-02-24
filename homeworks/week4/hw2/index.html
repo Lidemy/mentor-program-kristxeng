@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Kris's week4 hw2</title>
+
+		<style>
+
+			html body{
+				margin: 0;
+			}
+
+			body{
+				background-color: #d2a57f3d;
+			}
+
+			.bg{
+				padding: 0 20px;
+			}
+
+			.cover_pic{
+				width: 100%;
+				height: 200px;
+				margin:0;
+				background-color: #b7947d;
+			}
+
+			.container{
+				position: relative;
+				top: -80px;
+				max-width: 520px;
+				margin: 0 auto;
+				padding: 0 32px 36px;
+				border-top: 8px solid red;
+				background-color: #FFFFFF;
+				box-shadow:1px 1px 2px 1px #AAAAAA;
+			}
+
+			.header{
+				padding: 0 10px;
+			}
+
+			.title{
+				font-size: 36px;
+				margin: 36px 0;
+			}
+
+			.des{
+				font-size: 12px;
+				margin: 10px 0;
+			}
+
+			.des:last-child{
+				color: #999999;
+			}
+
+			.req{
+				color: red;
+			}
+
+			.question{
+				margin: 36px 0;
+				padding: 20px 10px;
+			}
+
+			.q3{
+				display: flex;
+				display: -webkit-flex;
+				align-items: center;
+				-webkit-align-items: center;
+				margin: 20px 0;
+			}
+
+			.q3-left{
+
+				width: 8%;
+				margin: 5px;
+			}
+
+			.q3-right{
+				display: inline-block;
+				width: 88%;
+			}
+
+			.subtitle{
+				font-size: 24px;
+				margin: 10px 0;
+			}
+
+			input{
+				margin: 10px 0 10px 0;
+			}
+
+			input[type=text]{
+				width: 300px;
+				height: 36px;
+				border: none;
+				border-bottom: 1px solid #AAAAAA;
+				box-sizing: border-box;
+				transition: all 0.3s ease-in-out;
+			}
+
+			input[type=text]:focus{
+				border-bottom: 2px solid #303030;
+				outline: none;
+			}
+
+			.hidden{
+				visibility: hidden;
+			}
+
+			#submit{
+				background-color: #00aed2;
+				border: none;
+				border-radius: 4px;
+				color: white;
+				padding: 12px 36px;
+				font-size: 16px;
+			}
+
+			.footer {
+				width:400px;
+				margin: 0 auto 36px;
+				text-align: center;
+			}
+
+			@media screen and (max-width: 600px){
+
+				.title{
+					font-size: 24px;
+				}
+
+				.subtitle{
+					font-size: 18px;
+				}
+
+				input[type=text]{
+					width: 100%;
+				}
+
+				#submit{
+					width: 100%;
+				}
+			}
+
+		</style>
+
+		<script>
+
+			document.addEventListener( 'DOMContentLoaded', () => {
+
+				document.querySelector('form').addEventListener('submit', e =>{
+
+
+					//取得各題答案內容
+					let answer1 = document.querySelector('form > div:nth-child(1) > input').value,
+						answer2 = document.querySelector('form > div:nth-child(2) > input').value,
+						answer3 = '',
+						answer4 = document.querySelector('form > div:nth-child(4) > input').value,
+						answer5 = document.querySelector('form > div:nth-child(5) > input').value;
+
+					//確認第三題選哪一個
+					let chozenType = document.querySelectorAll('[name=chozenType]');
+					if(chozenType[0].checked) answer3 = chozenType[0].value;
+					else if(chozenType[1].checked) answer3 = chozenType[1].value;
+
+					//取得必選題提示元素
+					let warning1 = document.querySelector('.question:nth-child(1)>.req'),
+						warning2 = document.querySelector('.question:nth-child(2)>.req'),
+						warning3 = document.querySelector('.question:nth-child(3)>.req'),
+						warning4 = document.querySelector('.question:nth-child(4)>.req');
+
+					if( !answer1 || !answer2 || !answer3 || !answer4 ){
+
+						if(!answer1) showWarning( warning1 );
+						else hideWarnig( warning1 );
+						
+						if(!answer2) showWarning( warning2 );	
+						else hideWarnig( warning2 );
+
+						if(!answer3) showWarning( warning3 );
+						else hideWarnig( warning3 );
+
+						if(!answer4) showWarning( warning4 );
+						else hideWarnig( warning4 );
+
+						e.preventDefault();
+
+
+					}else{
+
+						hideWarnig( warning1 );
+						hideWarnig( warning2 );
+						hideWarnig( warning3 );
+						hideWarnig( warning4 );
+
+						console.log('回答：');
+						console.log('電子郵件地址：' + answer1);
+						console.log('暱稱：' + answer2);
+						console.log('報名類型：' + answer3);
+						console.log('相關背景：' + answer4);
+						console.log('其他：' + answer5);
+
+						alert('答案已傳送！');
+
+					}
+
+
+				});
+
+			})
+
+			function showWarning( w ) {
+
+				w.parentNode.style.backgroundColor = '#ffdde3';
+				w.classList.remove('hidden');
+
+			}
+
+			function hideWarnig( w ) {
+
+				w.parentNode.style.backgroundColor = '#FFFFFF';
+				w.classList.add('hidden');
+
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<div class="cover_pic"></div>
+
+		<div class="bg">
+			<div class="container">
+
+				<div class="header">
+					<div class="title">從零到一：程式導師實驗計畫報名表單</div>
+					<div class="des">
+						詳情請參考：
+						<a href="https://medium.com/@hulitw/mentor-program-b5f96ae1eed1">
+							https://medium.com/@hulitw/mentor-program-b5f96ae1eed1
+						</a><br>
+						記得填完表單之後還要寫信報名才算成功，兩者缺一不可！
+					</div>
+					<div class="req des">*必填</div>
+				</div>
+
+				<form>
+					<!-- 第一題 -->
+					<div class="question">
+						<div class="subtitle">電子郵件地址<span class="req">*</span></div>
+						<input class="answer" type="text" placeholder="你的電子郵件" />
+						<div class="hidden req">這是必填問題！</div>
+					</div>
+
+					<!-- 第二題 -->
+					<div class="question">
+						<div class="subtitle">暱稱<span class="req">*</span></div>
+						<div class="des">該怎麼稱呼你</div>
+						<input class="answer" type="text" placeholder="您的回答" />
+						<div class="hidden req">這是必填問題！</div>
+					</div>
+
+					<!-- 第三題 -->
+					<div  class="question">
+						<div class="subtitle">報名類型<span class="req">*</span></div>
+
+						<div class="q3">
+							<input class="q3-left answer" type="radio" name="chozenType" value="工程師培養班" />
+							<div class="q3-right">工程師培養班（每週付出四十小時，從零培養到工程師，學費是一個月薪水）</div>
+						</div>
+						
+						<div class="q3">
+							<input class="q3-left answer" type="radio" name="chozenType" value="業餘班"/>
+							<div class="q3-right">業餘班（依照個人目標訂立學習計畫，學費一萬五千元）</div>
+						</div>
+						<div class="hidden req">這是必填問題！</div>
+					</div>
+
+					<!-- 第四題 -->
+					<div  class="question">
+						<div class="subtitle">是否有程式相關背景？<span class="req">*</span></div>
+						<div class="des">範例：無、高中時候學過C++、學過一點網頁前端、目前在資策會上課...</div>
+						<input class="answer" type="text" placeholder="您的回答" />
+						<div class="hidden req">這是必填問題！</div>
+					</div>
+
+					<!-- 第五題 -->
+					<div  class="question">
+						<div class="subtitle">其他</div>
+						<div class="des">其他任何你想講的</div>
+						<input class="answer" type="text" placeholder="您的回答" value=""/>
+					</div>
+
+					<input id="submit" type="submit" value="提交" />
+					<div class="des">請勿利用 Google 表單送出密碼。</div>
+				</form>
+			</div>
+
+			<div  class="des footer">Google 並未認可或建立這項內容。 檢舉濫用情形 - 服務條款 - 其他條款</div>
+			<div class="footer">Google 表單</div>
+
+		</div>
+
+	</body>
+</html>
