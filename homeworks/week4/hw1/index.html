@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Kris's Calculator</title>
+
+    <style>
+      .wrapper{
+        width: 400px;
+        margin: 100px auto;
+        padding: 10px;
+        border-width: 1px;
+        border-style: solid; 
+        border-color: #DDDDDD;
+      }
+
+      #result{
+        width: 400px;
+        height: 56px;
+        margin-bottom: 10px;
+        border-width: 1px;
+        border-style: solid; 
+        border-color: #CCCCCC;
+        text-align: right;
+        font-family: sans-serif;
+        font-size: 54px;
+        color: #3c3c3c;
+      }
+
+      .row-btn{
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .row-btn > button{
+        width: 94px;
+        height: 36px;
+        display: inline-block;
+        margin-top: 6px;
+        border-width: 1px;
+        border-style: solid; 
+        border-color: #CCCCCC;
+        font-family: sans-serif;
+        font-size: 16px;
+        color: #3c3c3c;
+      }
+
+      .row-btn > button:hover{
+        cursor: pointer;
+        border-color: #AAAAAA;
+      }
+
+      .nums{
+        background: #FFFFFF;
+      }
+
+      #equal{
+        width: 196px;
+        background: #ff8d00;
+        border-style: none;
+      }
+
+      #equal:hover{
+        background: #ea8200;
+      }
+    </style>
+
+    <script>
+      let operator = '',
+          perand = '0',
+          n = false;
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+        document.querySelector('.btn-pad').addEventListener('click', e =>{
+
+          let result = document.getElementById('result');
+          
+          if( e.target.className === 'nums' ){
+
+            if( result.innerText !== '0' && !n ){
+
+              if( e.target.innerText === '.' ) {
+
+                //檢查是否重複按了小數點
+                if( !result.innerText.includes('.') ) result.innerText += e.target.innerText;
+
+              }else{
+
+                result.innerText += e.target.innerText;
+
+              }
+
+            }else if( result.innerText !== '0' && n){
+
+              //n = true 表示上一輪按了operator
+              if( e.target.innerText === '.' ) result.innerText = '0.';
+
+              else result.innerText = e.target.innerText;
+
+              n = false;
+
+            }else{
+
+              if( e.target.innerText === '.' ) result.innerText += e.target.innerText;
+
+              else result.innerText = e.target.innerText;
+            }
+          }
+
+          if(e.target.className === 'operator'){
+
+            //如果按了operator 將螢幕上的數字與operator暫存
+            operand = result.innerText;
+
+            operator = e.target.innerText;
+
+            //n = true 表示下一輪按新數字
+            n = true;
+
+          }
+
+          if( e.target.id === 'equal' ){
+
+            if( operator === '+' ) result.innerText = parseInt( operand ) + parseInt( result.innerText );
+            if( operator === '-' ) result.innerText = parseInt( operand ) - parseInt( result.innerText );
+            if( operator === '×' ) result.innerText = parseInt( operand ) * parseInt( result.innerText );
+            if( operator === '÷' ) result.innerText = parseInt( operand ) / parseInt( result.innerText );
+
+          }
+
+          if( e.target.id === 'ac' ){
+
+             result.innerText = '0';
+             operator = '';
+             operand = '0';
+
+          }
+        })
+      })
+      
+    </script>
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+
+      <div id="result">0</div>
+      
+      <div class="btn-pad">
+
+        <div class="row-btn">
+          <button id="ac">AC</button>
+          <button class="operator">÷</button>
+        </div>
+
+        <div class="row-btn">
+          <button class="nums">7</button>
+          <button class="nums">8</button>
+          <button class="nums">9</button>
+          <button class="operator">×</button>
+        </div>
+
+        <div class="row-btn">
+          <button class="nums">4</button>
+          <button class="nums">5</button>
+          <button class="nums">6</button>
+          <button class="operator">-</button>
+        </div>
+
+        <div class="row-btn">
+          <button class="nums">1</button>
+          <button class="nums">2</button>
+          <button class="nums">3</button>
+          <button class="operator">+</button>
+        </div>
+
+        <div class="row-btn">
+          <button class="nums">0</button>
+          <button class="nums">.</button>
+          <button id="equal">=</button>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
