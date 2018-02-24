@@ -70,7 +70,7 @@
     <script>
       let operator = '',
           perand = '0',
-          n = false;
+          hasOperator = false;
 
       document.addEventListener('DOMContentLoaded', ()=>{
         document.querySelector('.btn-pad').addEventListener('click', e =>{
@@ -79,7 +79,7 @@
           
           if( e.target.className === 'nums' ){
 
-            if( result.innerText !== '0' && !n ){
+            if( result.innerText !== '0' && !hasOperator ){
 
               if( e.target.innerText === '.' ) {
 
@@ -92,14 +92,14 @@
 
               }
 
-            }else if( result.innerText !== '0' && n){
+            }else if( result.innerText !== '0' && hasOperator){
 
-              //n = true 表示上一輪按了operator
+              //hasOperator = true 表示上一輪按了operator
               if( e.target.innerText === '.' ) result.innerText = '0.';
 
               else result.innerText = e.target.innerText;
 
-              n = false;
+              hasOperator = false;
 
             }else{
 
@@ -116,17 +116,17 @@
 
             operator = e.target.innerText;
 
-            //n = true 表示下一輪按新數字
-            n = true;
+            //hasOperator = true 表示下一輪按新數字
+            hasOperator = true;
 
           }
 
           if( e.target.id === 'equal' ){
 
-            if( operator === '+' ) result.innerText = parseInt( operand ) + parseInt( result.innerText );
-            if( operator === '-' ) result.innerText = parseInt( operand ) - parseInt( result.innerText );
-            if( operator === '×' ) result.innerText = parseInt( operand ) * parseInt( result.innerText );
-            if( operator === '÷' ) result.innerText = parseInt( operand ) / parseInt( result.innerText );
+            if( operator === '+' ) result.innerText = parseFloat( operand ) + parseFloat( result.innerText );
+            if( operator === '-' ) result.innerText = parseFloat( operand ) - parseFloat( result.innerText );
+            if( operator === '×' ) result.innerText = parseFloat( operand ) * parseFloat( result.innerText );
+            if( operator === '÷' ) result.innerText = parseFloat( operand ) / parseFloat( result.innerText );
 
           }
 
