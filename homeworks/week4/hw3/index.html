@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Kris's week4 hw3</title>
+
+	<style>
+
+		body{
+			margin:0;
+		}
+
+		.bg-img{
+			width:100%;
+			position: fixed;
+			top: -20px;
+			z-index: -1;
+		}
+
+		.container{
+			max-width: 1200px;
+			margin: 48px auto;
+		}
+
+		.stream{
+			display: inline-block;
+			background-color: #00000059;
+			width: 320px;
+			margin: 20px 4% 20px 20px;
+		}
+
+		.stream:hover{
+			cursor: pointer;
+			opacity: 0.8;
+			box-shadow: 0px 1px 1px 0 black;
+			transition: opacity 0.2s ease-in-out;
+		}
+
+		.stream_img{
+			width: 100%;
+		}
+
+		.stream_title{
+			padding: 8px 0;
+		}
+
+		.logo{
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			margin-left: 20px;
+		}
+
+		.logo > img{
+			width: 100%;
+			border-radius:50%;
+			vertical-align: -45%;
+		}
+
+		.title{
+			display: inline-block;
+			color: #c5c5c5;
+			font-family: sans-serif;
+			padding-left: 20px;
+		}
+
+		.status{
+			width: 200px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	</style>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', ()=>{
+
+			var req = new XMLHttpRequest();
+			var resp;
+			var stream = document.querySelector('.stream');
+
+			req.open('GET', 'https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends', true);
+
+			req.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+			req.setRequestHeader('Client-ID', 'll1chxpyt6m2x5y9ogfp72agffedbu');
+
+			req.onload = () =>{
+
+				if( req.status >= 200 && req.status < 400 ){
+
+					resp = JSON.parse( req.responseText );
+
+					console.log(stream.lastElementChild.firstElementChild.nextElementSibling)
+					
+					showData( stream, 0 );
+
+					for( let i=1; i < 20; i++ ){
+
+						let copyStream = stream.cloneNode( true );
+
+						showData( copyStream, i );
+
+						document.querySelector('.container').appendChild( copyStream );
+					}
+
+					function showData( stream, n ){
+
+						stream.firstElementChild.firstElementChild.firstElementChild.setAttribute('src', resp.streams[n].preview.medium);
+						stream.firstElementChild.lastElementChild.firstElementChild.firstElementChild.setAttribute('src', resp.streams[n].channel.logo);
+						stream.firstElementChild.lastElementChild.lastElementChild.firstElementChild.innerText = resp.streams[n].channel.status;
+						stream.firstElementChild.lastElementChild.lastElementChild.lastElementChild.innerText = resp.streams[n].channel.display_name;
+						stream.firstElementChild.setAttribute('href', resp.streams[n].channel.url);
+					}
+				}
+			}
+
+			req.send();
+		})
+	</script>
+
+</head>
+<body>
+	<div class="bg-img">
+		<img src="https://lolstatic-a.akamaihd.net/lolkit/1.1.6/resources/images/bg-default.jpg" />
+	</div>
+	<div class="container">
+		<div class="stream">
+			<a>
+				<div class="stream_img"><img /></div>
+				<div class="stream_title">
+					<div class="logo"><img /></div>
+					<div class="title">
+						<div class="status"></div>
+						<div class="display_name"></div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+
+</body>
+</html>
