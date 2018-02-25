@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<style>
+			.block{
+				display: inline-block;
+				width: 232px;
+				height: 80px;
+				background-color: red;
+				color: white;
+				margin: 36px;
+				text-align: center;
+				line-height: 80px;
+				font-family: sans-serif;
+			}
+
+			.btn{
+				width: 80px;
+				height: 36px;
+				display: inline-block;
+				border-style: none;
+				background-color: #858585;
+				color: white;
+				margin: 36px;
+			}
+
+			.displayArea{
+				margin: 36px;
+				font-family: sans-serif;
+			}
+		</style>
+
+		<script>
+
+			document.addEventListener('DOMContentLoaded', ()=>{
+
+				var pressHide = query('.show_hide:first-child');
+				var pressShow = query('.show_hide:last-child');
+				var A = q('.block');
+
+				console.log(pressHide);
+
+				pressHide.addEventListener('click', ()=> A.hide() );
+
+				pressShow.addEventListener('click', ()=> A.show() );
+
+
+				
+			});
+
+			query = ( selector ) => document.querySelector( selector );
+
+			//實作 "function hide & show"
+			q = ( selector ) =>{
+
+				var element = document.querySelector( selector );
+
+				return {
+
+					hide: ()=> element.style.visibility = "hidden",
+					show: ()=> element.style.visibility = "visible"
+				}
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="block">A</div>
+
+		<div>
+
+			<input class="show_hide btn" type="button" value="隱藏" />
+
+			<input class="show_hide btn" type="button" value="顯示" />
+		
+		</div>
+	</body>
+</html>
