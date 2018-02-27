@@ -6,4 +6,4 @@
 | nickname   | nvarchar  | 留言者暱稱 |
 | content    | text      | 留言內容   |
 | time       | timestamp | 留言時間   |
-| subcomments | integer | 如果 0，表示為主留言；若為子留言則儲存主留言id。  |
+| parent_id  | integer   | 如果 0，表示為主留言；若為子留言則儲存主留言id。  |
