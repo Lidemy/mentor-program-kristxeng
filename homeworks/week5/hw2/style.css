@@ -1,0 +1,130 @@
+
+
+.title{
+	max-width: 600px;
+	margin:100px auto 0;
+	font-family:  '微軟正黑體', sans-serif;
+	font-size: 46px;
+}
+
+.container{
+	max-width: 600px;
+	margin: 0 auto;
+	font-family: '微軟正黑體', sans-serif;
+}
+
+.cmmt-box{
+	box-sizing: border-box;
+	border: 1px solid #e6e6e6;
+	width: 100%;
+	margin: 10px auto;
+	padding: 20px;
+}
+
+
+.sub-cmmt{
+	width: 95%;
+	margin-left: 3%;
+	margin-top: 6px;
+	padding: 10px;
+	background-color: #f2f7fb;
+}
+
+
+.content{
+	box-sizing: border-box;
+	width: 100%;
+	margin: 5px 0 10px;
+	display: block;
+}
+
+
+.nickname{
+	width: 48%;
+	display: inline-block;
+	line-height: 26px;
+}
+
+.time{
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+}
+
+hr{
+	border: 0.5px solid #d6d6d6;
+	margin: 0;
+}
+
+input.nickname{
+	border: 1px solid #CCCCCC;
+	margin-bottom: 6px;
+}
+
+textarea.content{
+	border: 1px solid #CCCCCC;
+	height: 60px;
+	resize: none;
+}
+
+input[type=submit]{
+	border-style: none;
+	background-color: #3597dc;
+	color: white;
+	width: 82px;
+	height: 28px;
+}
+
+input[type=submit]:hover{
+	box-shadow: 0 2px 5px 0 #00000040;
+	background-color: #65bbf7;
+	transition: all 0.2s ease-out;
+	cursor: pointer;
+}
+
+input::placeholder{
+	padding-left: 3px;
+}
+
+.pagesnum{
+	text-align: center;
+	margin: 42px 0;
+}
+
+.pagesnum>ul>li{
+	list-style-type: none;
+	display: inline;
+	margin: 0 10px;
+
+}
+
+.pagesnum a:link{
+	text-decoration: none;
+}
+
+.pagesnum a:visited{
+	text-decoration: none;
+	color: #969696;
+}
+
+.pagesnum a:hover {
+    text-decoration: underline;
+}
+
+.pagesnum a:active {
+    text-decoration: underline;
+}
+
+.box-collapse{
+	color: #3597dc;
+	font-size: 10px;
+}
+
+.box-collapse:hover{
+	cursor: pointer;
+	color: #65bbf7;
+}
+
+.box-collapse+form{
+	display: none;
+}
