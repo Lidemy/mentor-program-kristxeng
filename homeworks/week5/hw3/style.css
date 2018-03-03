@@ -1,0 +1,218 @@
+/************************/
+/*						*/
+/*    for index.php     */
+/*	   					*/
+/************************/
+
+body{
+	background-color: #e9ebee;
+}
+.container{
+	max-width: 600px;
+	margin: 0 auto;
+	font-family: '微軟正黑體', sans-serif;
+}
+
+.title{
+	width: 100%;
+	margin:100px auto 0;
+	font-size: 48px;
+}
+
+.cmmt-box{
+	background-color: white;
+	box-sizing: border-box;
+	border: 1px solid #e6e6e6;
+	width: 100%;
+	margin: 10px auto;
+	padding: 20px;
+}
+
+.cmmt-box__nickname, .sub-cmmt__nickname{
+	width: 48%;
+	display: inline-block;
+	line-height: 26px;
+	margin: 6px 0;
+	font-weight: 900;
+}
+
+hr{
+	border: 0.5px solid #d6d6d6;
+	margin: 0;
+}
+
+.cmmt-box__textarea, .sub-cmmt__textarea{
+	box-sizing: border-box;
+	width: 100%;
+	margin: 5px 0 10px;
+	display: block;
+	border: 1px solid #CCCCCC;
+	height: 60px;
+	resize: none;
+}
+
+.cmmt-box__time, .sub-cmmt__time{
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+	font-weight: 900;
+}
+
+.cmmt-box__content, .sub-cmmt__content{
+	box-sizing: border-box;
+	width: 100%;
+	margin: 5px 0 10px;
+	display: block;
+}
+
+.cmmt-box__btn, .sub-cmmt__btn{
+	border-style: none;
+	border-radius: 4px;
+	background-color: #3597dc;
+	color: white;
+	text-align: center;
+	font-family: '微軟正黑體', sans-serif;
+	font-size: 14px;
+	line-height: 36px;
+	padding: 0 20px;
+}
+
+.cmmt-box__btn:hover, .sub-cmmt__btn:hover{
+	box-shadow: 0 2px 5px 0 #00000040;
+	background-color: #65bbf7;
+	transition: all 0.2s ease-out;
+	cursor: pointer;
+}
+
+.cmmt-box__btn:active, .sub-cmmt__btn:active{
+	background-color: #307fb7;
+	box-shadow: 0 2px 5px 0 #00000040 inset;
+}
+
+.sub-cmmt{
+	width: 95%;
+	margin-left: 3%;
+	margin-top: 6px;
+	padding: 10px;
+	background-color: #f2f7fb;
+}
+
+.sub-cmmt__nickname, .sub-cmmt__time, .sub-cmmt__content{
+	font-size: 14px;
+}
+
+.sub-cmmt__btn{
+	font-size: 8px;
+	line-height: 24px;
+	padding: 0 10px;
+	
+}
+
+.sub-cmmt__collapse-toggle,
+.sub-cmmt__login-link,
+.cmmt-box__logout{
+	color: #3597dc;
+	font-size: 10px;
+}
+
+.sub-cmmt__collapse-toggle:hover,
+.sub-cmmt__login-link:hover,
+.cmmt-box__logout:hover{
+	cursor: pointer;
+	color: #65bbf7;
+}
+
+.sub-cmmt__collapse-toggle+form{
+	display: none;
+}
+
+.pagesnum{
+	text-align: center;
+	margin: 42px 0;
+}
+
+.pagesnum>ul>li{
+	list-style-type: none;
+	display: inline;
+	margin: 0 10px;
+}
+
+.pagesnum a:link{
+	text-decoration: none;
+}
+
+.pagesnum a:visited{
+	text-decoration: none;
+	color: #969696;
+}
+
+.pagesnum a:hover {
+    text-decoration: underline;
+}
+
+.pagesnum a:active {
+    text-decoration: underline;
+}
+
+
+
+/********************************/
+/*		 						*/
+/*   for reg.php & login.php    */
+/*          	   				*/
+/********************************/
+
+.login-container{
+	max-width: 300px;
+	margin: 0 auto;
+	font-family: '微軟正黑體', sans-serif;
+}
+
+.login__input{
+	box-sizing: border-box;
+	border-radius: 4px;
+	width: 100%;
+	border: 1px solid #CCCCCC;
+	display: inline-block;
+	line-height: 26px;
+	margin-bottom: 6px;
+}
+
+.login__input::placeholder{
+	padding-left: 3px;
+}
+
+.login__btn{
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: 16px;
+	font-weight: 900;
+
+}
+
+.login__title {
+	font-size: 10px;
+	font-weight: 900;
+	margin-top: 10px;
+}
+
+.login__title--centered{
+	text-align: center;
+
+}
+
+.login__title>a{
+	color: #3597dc;
+	font-size: 10px;
+}
+
+.login__title>a:hover{
+	cursor: pointer;
+	color: #65bbf7;
+}
+
+.login__warning-toggle{
+	color: #d64848;
+	height: 21px;
+	visibility: hidden;
+}
