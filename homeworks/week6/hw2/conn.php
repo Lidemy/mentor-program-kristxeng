@@ -1,0 +1,37 @@
+<?php
+
+$servername = "localhost";
+$username = "";
+$password = "";
+$dbname = "mentor_program_db";
+$cmmts_table = "kristxeng_comments2";
+$users_table = "kristxeng_users";
+
+
+//用 PDO 方式改寫
+
+try{
+
+	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+	//設定錯誤顯示時，會拋出異常
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	//echo "Connected Success";
+}
+
+catch(PDOException $e){
+
+	echo "Connected Failed: " . $e->getMessage();
+}
+
+
+/* 原本使用 MySQLi 的方式連結資料庫
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if( $conn->connect_error ){
+	die("Connect Fails: " . $conn->connect_error);
+}
+
+*/
+
+?>
