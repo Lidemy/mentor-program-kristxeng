@@ -17,6 +17,7 @@
 
 				<?php
 					require_once('conn.php');
+					require_once('convert_time.php');
 
 					if( !isset($_COOKIE['user_id']) ){
 				?>
@@ -78,9 +79,9 @@
 
 				<!-- 顯示主要留言 -->
 				<div class="cmmt__header">
-					<div class="cmmt__nickname"><?php echo $cmmt_row["nickname"]; ?></div>
+					<div class="cmmt__nickname"><?php echo $cmmt_row["nickname"] ?></div>
 					<div>
-						<div class="cmmt__time"><?php echo $cmmt_row["created_by"]; ?></div>
+						<div class="cmmt__time"><?php echo convert_time( $cmmt_row["created_by"] ) ?></div>
 						<div class="cmmt__edit-delete">
 							<?php  //如果這條留言的user_id等於當前用戶的 user_id，則顯示編輯/刪除按鈕
 								if( isset($_COOKIE['user_id']) AND $cmmt_row['user_id'] === $_COOKIE['user_id']){
@@ -91,14 +92,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="cmmt__content"><?php echo $cmmt_row["content"]; ?></div>
-				<div class="cmmt__id"><?php echo $cmmt_row["cmmt_id"]; ?></div>
+				<div class="cmmt__content"><?php echo $cmmt_row["content"] ?></div>
+				<div class="cmmt__id"><?php echo $cmmt_row["cmmt_id"] ?></div>
 
 					<?php 
 						//查詢子留言
 						$sub_sql = "SELECT c.id AS cmmt_id, user_id, nickname, created_by, content FROM $cmmts_table AS c INNER JOIN $users_table".
 									" WHERE parent_id = " . $cmmt_row['cmmt_id'] . " AND user_id = $users_table.id".
-									" ORDER BY created_by ASC";
+									" ORDER BY created_by DESC";
 
 						$sub_result = $conn->query($sub_sql );
 						$sub_result->setFetchMode(PDO::FETCH_ASSOC);
@@ -111,9 +112,9 @@
 					?>
 
 									<div class="cmmt__header">
-										<div class="cmmt__nickname"><?php echo $sub_row["nickname"]; ?></div>
+										<div class="cmmt__nickname"><?php echo $sub_row["nickname"] ?></div>
 										<div>	
-											<div class="cmmt__time"><?php echo $sub_row["created_by"]; ?></div>
+											<div class="cmmt__time"><?php echo convert_time( $sub_row["created_by"] ) ?></div>
 											<div class="cmmt__edit-delete">
 												<?php  //如果這條留言的user_id等於當前用戶的 user_id，則顯示編輯/刪除按鈕
 													if( isset($_COOKIE['user_id']) AND $sub_row['user_id'] === $_COOKIE['user_id']){
@@ -125,8 +126,8 @@
 										</div>
 									</div>
 
-									<div class="cmmt__content"><?php echo $sub_row["content"]; ?></div>
-									<div class="cmmt__id"><?php echo $sub_row["cmmt_id"]; ?></div>
+									<div class="cmmt__content"><?php echo $sub_row["content"] ?></div>
+									<div class="cmmt__id"><?php echo $sub_row["cmmt_id"] ?></div>
 								</div> <!-- END of <div class="sub-cmmt"> -->
 
 					<?php
@@ -154,7 +155,7 @@
 							<form action="insert_cmmt.php" method="post">
 								<div class="cmmt__nickname"><?php echo $user_row['nickname'] ?></div>
 								<textarea class="cmmt__textarea" name="content" placeholder="留言內容" required></textarea>
-								<input type="hidden" name="parent_id" value=<?php echo $cmmt_row['cmmt_id']; ?> />
+								<input type="hidden" name="parent_id" value=<?php echo $cmmt_row['cmmt_id'] ?> />
 								<input class="cmmt__btn sub-cmmt__btn" type="submit" value="送 出" />
 							</form>
 
