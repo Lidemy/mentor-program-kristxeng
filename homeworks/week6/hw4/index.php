@@ -55,7 +55,7 @@
 				
 				<?php
 						}						
-					}else{  //沒有設定cookie，顯示登入框
+					}else{  //如果沒有設定cookie，顯示登入框
 				?> 
 
 					
@@ -70,7 +70,7 @@
 			<?php
 				
 				//查詢主要留言筆數
-				$pages_sql = "SELECT COUNT(parent_id) AS datanum FROM " . $cmmts_table . " WHERE parent_id = 0";
+				$pages_sql = "SELECT COUNT(parent_id) AS datanum FROM $cmmts_table  WHERE parent_id = 0";
 				$pages_result = $conn->query( $pages_sql );
 				$pages_result->setFetchMode(PDO::FETCH_ASSOC);
 				$pages_row = $pages_result->fetch();
@@ -78,18 +78,20 @@
 				//確認總頁數
 				$pagesnum = ceil ( $pages_row['datanum'] / 10 );
 
-				//設定目前所在頁數
-				if( !isset( $_GET['page'])) $page=1;
+				//如果沒有 $_GET，或是 $_GET非數字，則到首頁
+				if( !isset( $_GET['page']) OR !intval($_GET['page'])) $page=1;
 				else $page =  intval( $_GET['page'] );
+
+				//計算本頁顯示的第一筆留言起始值
+				$cmmt_start_num = ($page-1)*10;
 
 				//查詢目前頁面需要的十筆主留言
 				$cmmt_sql = "SELECT c.id AS cmmt_id, user_id, nickname, created_by, content FROM $cmmts_table AS c INNER JOIN" . 
-						" $users_table ON parent_id = 0 AND user_id = $users_table.id ORDER BY created_by DESC " . 
-						"LIMIT " . ($page-1)*10 . ", 10";
-
+					" $users_table ON parent_id = 0 AND user_id = $users_table.id ORDER BY created_by DESC LIMIT $cmmt_start_num, 10";
+				
 				$cmmt_result = $conn->query( $cmmt_sql );
 				$cmmt_result->setFetchMode(PDO::FETCH_ASSOC);
-				while( $cmmt_row = $cmmt_result->fetch()){
+				while( $cmmt_row = $cmmt_result->fetch() ){
 			?>
 
 			<div class="cmmt-box">
@@ -118,13 +120,12 @@
 				<!-- 顯示子留言 -->
 				<?php 
 					//查詢子留言
-					$sub_sql = "SELECT c.id AS cmmt_id, user_id, nickname, created_by, content FROM $cmmts_table AS c INNER JOIN $users_table".
-								" WHERE parent_id = " . $cmmt_row['cmmt_id'] . " AND user_id = $users_table.id".
-								" ORDER BY created_by ASC";
-
-					$sub_result = $conn->query($sub_sql );
-					$sub_result->setFetchMode(PDO::FETCH_ASSOC);
-					while( $sub_row = $sub_result->fetch() ){
+					$sub_stmt = $conn->prepare("SELECT c.id AS cmmt_id, user_id, nickname, created_by, content FROM $cmmts_table AS c INNER JOIN $users_table".
+								" WHERE parent_id = :cmmt_id AND user_id = $users_table.id ORDER BY created_by ASC");
+					$sub_stmt->bindParam( ':cmmt_id', $cmmt_row['cmmt_id'] );
+					$sub_stmt->execute();
+					$sub_stmt->setFetchMode(PDO::FETCH_ASSOC);
+					while( $sub_row = $sub_stmt->fetch() ){
 
 						//如果是主留言者，則背景上色
 						if( $sub_row['user_id'] === $cmmt_row['user_id'] ) echo '<div class="sub-cmmt sub-cmmt__main-author">';
