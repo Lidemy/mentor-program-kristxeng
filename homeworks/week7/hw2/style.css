@@ -143,11 +143,10 @@ body{
 	cursor: pointer;
 }
 
-
-//讓div模擬的按鈕內容不被當成一般文字選取
-.unseletable{
-  -webkit-user-select: none;  /* Chrome all / Safari all */
-  -moz-user-select: none;     /* Firefox all */
-  -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */    
+.unselectable{
+	//讓模擬的假按鍵內容不被當文字選取
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+ 	user-select: none;          /* Likely future */    
 }
