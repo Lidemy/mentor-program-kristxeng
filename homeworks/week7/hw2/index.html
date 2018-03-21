@@ -17,7 +17,7 @@
 
             //建立含新待辦事項的元件
             var todoItem = $('<div class="todo-item"></div');
-            todoItem.append('<div class="todo__completed-btn unseletable"></div>',
+            todoItem.append('<div class="todo__completed-btn unselectable"></div>',
                             '<div class="todo__content"></div>',
                             '<div class="todo__del-btn"><img src="close.jpg" /></div>');
             todoItem.children('.todo__content').text( $('.todo__input').val() );
@@ -65,26 +65,26 @@
     
     <div class="container">
       <div class="todo-item">
-        <div class="todo__add-icon unseletable">＋</div>
+        <div class="todo__add-icon unselectable">＋</div>
         <input class="todo__input type="text" placeholder="請輸入您的待辦事項" autofocus />
-        <div class="todo__add-btn unseletable">add</div>
+        <div class="todo__add-btn unselectable">add</div>
       </div>
 
     <!-- 測試用item START 
       <div class="todo-item">
-        <div class="todo__completed-btn unseletable"></div>
+        <div class="todo__completed-btn unselectable"></div>
         <div class="todo__content">待辦事項01</div>
         <div class="todo__del-btn"><img src="close.jpg" /></div>
       </div>
 
       <div class="todo-item">
-        <div class="todo__completed-btn unseletable"></div>
+        <div class="todo__completed-btn unselectable"></div>
         <div class="todo__content">待辦事項02</div>
         <div class="todo__del-btn"><img src="close.jpg" /></div>
       </div>
 
       <div class="todo-item">
-        <div class="todo__completed-btn unseletable"></div>
+        <div class="todo__completed-btn unselectable"></div>
         <div class="todo__content">待辦事項03</div>
         <div class="todo__del-btn"><img src="close.jpg" /></div>
       </div>
