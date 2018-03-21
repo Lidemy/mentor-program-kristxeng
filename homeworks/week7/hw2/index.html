@@ -31,6 +31,11 @@
         });
 
         //完成待辦事項按鈕處理。有DOM Ready之後才生成的元件，要使用 on 掛載event listener
+        /* 修正一下上面這句註解：
+        $(document).on('click', '.abc', function(){doing...}) 的意思，好像比較接近
+        掛載eventListener在document上，但是 e.target.className === "abc" 時，才執行callback function的內容。
+        而不是動態掛載 eventListener 到每一個 className === "abc" 的元件上
+        */
         $(document).on('click', '.todo__completed-btn', function(){
           //上面這句的callback function，如果改用"()=>"下面的$(this)會報錯，但還沒找出原因是什麼..
           
