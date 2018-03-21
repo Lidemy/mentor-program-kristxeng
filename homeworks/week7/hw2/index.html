@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kris's Todo List</title>
+    <meta name="description" content="This is Kris Week7 HW2" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(document).ready( ()=>{
+
+        //新增待辦按鈕處理
+        $('.todo__add-btn').click( ()=>{
+          if( $('.todo__input').val() !== '' ){
+
+            //建立含新待辦事項的元件
+            var todoItem = $('<div class="todo-item"></div');
+            todoItem.append('<div class="todo__completed-btn unseletable"></div>',
+                            '<div class="todo__content"></div>',
+                            '<div class="todo__del-btn"><img src="close.jpg" /></div>');
+            todoItem.children('.todo__content').text( $('.todo__input').val() );
+
+            //新增待辦事項到最上面
+            $('.todo-item').first().after(todoItem);
+
+            //新增後清空輸入框
+            $('.todo__input').val('');
+          }
+        });
+
+        //完成待辦事項按鈕處理。有DOM Ready之後才生成的元件，要使用 on 掛載event listener
+        $(document).on('click', '.todo__completed-btn', function(){
+          //上面這句的callback function，如果改用"()=>"下面的$(this)會報錯，但還沒找出原因是什麼..
+          
+          if( !$(this).html() ) {
+            
+            //打勾並且畫刪除線
+            $( this ).html('&radic;');
+            $( this ).next().css( 'text-decoration-line', 'line-through' );
+
+          } else {
+
+            $( this ).html('');
+            $( this ).next().css( 'text-decoration-line', 'none' );
+          }
+
+        });
+
+        //刪除待辦事項按鈕處理
+        $(document).on('click', '.todo__del-btn', function(){
+
+          $( this ).parent().remove();
+
+        });
+
+
+      });
+    </script>
+  </head>
+  <body>
+
+    <div class="todo__title">todo list</div>
+    
+    <div class="container">
+      <div class="todo-item">
+        <div class="todo__add-icon unseletable">＋</div>
+        <input class="todo__input type="text" placeholder="請輸入您的待辦事項" autofocus />
+        <div class="todo__add-btn unseletable">add</div>
+      </div>
+
+    <!-- 測試用item START 
+      <div class="todo-item">
+        <div class="todo__completed-btn unseletable"></div>
+        <div class="todo__content">待辦事項01</div>
+        <div class="todo__del-btn"><img src="close.jpg" /></div>
+      </div>
+
+      <div class="todo-item">
+        <div class="todo__completed-btn unseletable"></div>
+        <div class="todo__content">待辦事項02</div>
+        <div class="todo__del-btn"><img src="close.jpg" /></div>
+      </div>
+
+      <div class="todo-item">
+        <div class="todo__completed-btn unseletable"></div>
+        <div class="todo__content">待辦事項03</div>
+        <div class="todo__del-btn"><img src="close.jpg" /></div>
+      </div>
+     測試用item END -->
+
+    </div>
+  </body>
+</html>
+
