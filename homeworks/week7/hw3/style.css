@@ -1,0 +1,203 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+/************************/
+/*						*/
+/*    for index.php     */
+/*	   					*/
+/************************/
+
+body{
+	background-color: #eef3f9;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+
+.cmmt-box{
+	background-color: white;
+	box-sizing: border-box;
+	border: 1px solid #e6e6e6;
+}
+
+.cmmt__id{
+	display: none;
+}
+
+.cmmt__header{
+	display: flex;
+	justify-content: space-between;
+}
+
+.cmmt__nickname{
+	box-sizing: border-box;
+	font-weight: 400;
+}
+
+.cmmt__time{
+	display: inline-block;
+	font-weight: 300;
+	color: #CCCCCC;
+	margin-left: 20px;
+}
+
+.cmmt__edit-delete{
+	display: inline-block;
+	width: 72px;
+	font-size: 10px;
+	line-height: 24px;
+	text-align: right;
+}
+
+
+.cmmt__textarea{
+	box-sizing: border-box;
+	width: 100%;
+	margin: 5px 0 10px;
+	display: block;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+	height: 60px;
+	resize: none;
+}
+
+
+
+.cmmt__content{
+	box-sizing: border-box;
+	width: 100%;
+	margin: 6px 0 10px;
+	padding-top: 6px;
+	border-top: 0.5px solid #d6d6d6;;
+	display: block;
+	font-weight: 300;
+	overflow-wrap: break-word;
+}
+
+.cmmt__btn{
+	border-style: none;
+	border-radius: 4px;
+	background-color: #3597dc;
+	color: white;
+	text-align: center;
+	font-family: 'Noto Sans TC', sans-serif;
+	font-size: 14px;
+	line-height: 36px;
+	padding: 0 20px;
+	-webkit-appearance: none;
+}
+
+.cmmt__btn:hover{
+	box-shadow: 0 2px 5px 0 #00000040;
+	background-color: #65bbf7;
+	transition: all 0.2s ease-out;
+	cursor: pointer;
+}
+
+.cmmt__btn:active{
+	background-color: #307fb7;
+	box-shadow: 0 2px 5px 0 #00000040 inset;
+}
+
+.sub-cmmt{
+	margin-left: 10%;
+	margin-top: 6px;
+	padding: 10px;
+
+}
+
+.sub-cmmt__main-author{
+	background-color: #eef3f9;
+}
+
+.sub-cmmt__btn{
+	font-size: 8px;
+	line-height: 24px;
+	padding: 0 10px;
+	-webkit-appearance: none;
+}
+
+.cmmt__edit,
+.cmmt__edited,
+.cmmt__delete,
+.sub-cmmt__collapse-toggle,
+.sub-cmmt__login-link,
+.cmmt__logout{
+	color: #3597dc;
+	font-size: 10px;
+}
+
+.cmmt__edit:hover,
+.cmmt__edited:hover,
+.cmmt__delete:hover,
+.sub-cmmt__collapse-toggle:hover,
+.sub-cmmt__login-link:hover,
+.cmmt__logout:hover{
+	cursor: pointer;
+	color: #65bbf7;
+}
+
+.sub-cmmt__collapse-toggle+div{
+	display: none;
+}
+
+
+/********************************/
+/*		 						*/
+/*   for reg.php & login.php    */
+/*          	   				*/
+/********************************/
+/*
+.login-container{
+	max-width: 300px;
+	margin: 0 auto;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+*/
+.login__input{
+	box-sizing: border-box;
+	border-radius: 4px;
+	width: 100%;
+	border: 1px solid #CCCCCC;
+	display: inline-block;
+	line-height: 26px;
+	margin-bottom: 6px;
+}
+
+.login__input::placeholder{
+	padding-left: 3px;
+}
+
+.login__btn{
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: 16px;
+	font-weight: 300;
+	-webkit-appearance: none;
+}
+
+.login__title {
+	font-size: 10px;
+	font-weight: 400;
+	margin-top: 10px;
+}
+
+.login__title--centered{
+	text-align: center;
+
+}
+
+.login__title>a{
+	color: #3597dc;
+	font-size: 10px;
+}
+
+.login__title>a:hover{
+	cursor: pointer;
+	color: #65bbf7;
+}
+
+.login__warning-toggle{
+	color: #d64848;
+	height: 21px;
+	visibility: hidden;
+}
+
