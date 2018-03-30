@@ -136,6 +136,14 @@ $(function(){
 					var content = $(e.target).prev().prev().val();
 					var cmmt_id = resText.cmmt_id;
 
+					//取得主要留言者暱稱，做之後子留言上色的判斷
+					var primary_cmmt_nickname = $(e.target).parents('.cmmt-box').children('.cmmt__header').children('.cmmt__nickname').text();
+
+
+					//console.log("nickname:" + nickname)
+
+					//console.log("primary_cmmt_nickname:" + primary_cmmt_nickname)
+
 					//顯示在主留言
 					if( e.target.className === 'cmmt__btn'){
 
@@ -174,7 +182,7 @@ $(function(){
 					}else {
 
 						$(e.target).parent().parent().before(`
-							<div class="sub-cmmt sub-cmmt__main-author">
+							<div class="sub-cmmt col-11">
 								<div class="cmmt__header">
 									<div class="cmmt__nickname">${nickname}</div>
 									<div>	
@@ -188,6 +196,14 @@ $(function(){
 								<div class="cmmt__id">${cmmt_id}</div>
 							</div>`
 						)
+
+						//如果子留言與主留言暱稱相同，則上色
+						if( nickname === primary_cmmt_nickname ){
+
+							$(e.target).parent().parent().prev().addClass('sub-cmmt__main-author');
+						}
+
+
 					}
 
 					//把輸入欄位清空

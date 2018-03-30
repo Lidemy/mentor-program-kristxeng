@@ -1,12 +1,12 @@
 <?php
 
 $servername = "localhost";
-$username = "";
-$password = "";
+$username = "mentor_admin";
+$password = "mentor_admin123";
 $dbname = "mentor_program_db";
 $cmmts_table = "kristxeng_comments2";
 $users_table = "kristxeng_users";
-$certificates_table = "kristxeng_users_certificate";
+//$certificates_table = "kristxeng_users_certificate";
 
 
 //用 PDO 方式改寫
@@ -23,16 +23,5 @@ catch(PDOException $e){
 
 	echo "Connected Failed: " . $e->getMessage();
 }
-
-
-/* 原本使用 MySQLi 的方式連結資料庫
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if( $conn->connect_error ){
-	die("Connect Fails: " . $conn->connect_error);
-}
-
-*/
 
 ?>
