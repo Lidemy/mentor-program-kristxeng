@@ -1,13 +1,15 @@
 <?php
+session_start();
 
 require_once('conn.php');
-require_once('make_certificate.php');
+
 
 //使用PDO & Prepared Statement 
 $stmt = $conn->prepare("SELECT id, username, password FROM $users_table " .
 					"WHERE username = :username");
 //bind parameters & execute
 $stmt->bindParam(':username', $_POST['username']);
+
 //$stmt->bindParam(':password', $_POST['password']);
 $stmt->execute();
 
@@ -20,9 +22,18 @@ if( $stmt->rowCount() === 1 ){
 
 	if( password_verify( $_POST['password'], $row['password'] ) ){
 
-		$certificate = make_certificate( $row['id'], $conn );
+		//用 uniqid() 隨機生成 certificate
+		//$certificate = uniqid();
 
-		setCookie('certificate', $certificate, time()+3600*24);
+		//設定session內的certificate
+		//$_SESSION['certificate'] = $certificate;
+
+		//設定 session 中的 user_id
+		$_SESSION['user_id'] = $row['id'];
+
+		//設定cookie內的certificate
+		//setCookie('certificate', $certificate, time()+3600*24);
+
 		echo 'ok';
 
 	}else{
@@ -34,25 +45,5 @@ if( $stmt->rowCount() === 1 ){
 
 	echo 'error';
 }
-
-
-/* 原本使用 MySQLi 的方式
-
-$sql = "SELECT id, username, password FROM $users_table WHERE username = '" . $_POST['username']."'" .
-			"AND password = '" . $_POST['password'] . "'";
-
-$result = $conn->query( $sql );
-
-if( $result->num_rows === 1 ){
-
-	$row = $result->fetch_assoc();
-	setcookie('user_id', $row['id'], time()+3600*24);
-	echo 'ok';
-
-}else{
-
-	echo 'error';
-}
-*/
 
 ?>

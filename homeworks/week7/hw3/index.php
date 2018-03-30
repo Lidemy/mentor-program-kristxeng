@@ -1,10 +1,12 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Kris's Comment Board</title>
-		<meta name="description" content="This is Mentor Program Week5 hw2" />
+		<meta name="description" content="This is Mentor Program Week7 HW3" />
 
 		<!--  Boorstrap StyleSheet  -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -28,22 +30,17 @@
 			<?php
 				require_once('conn.php');
 				require_once('convert_time.php');
-				$login_user_id = 0;
-				//做子留言框顯示判斷
 
-				if( isset($_COOKIE['certificate']) ){
 
-					//用cookie中的certificate尋找登入者的nickname
-					$user_stmt = $conn->prepare("SELECT id, nickname FROM $users_table AS user INNER JOIN $certificates_table ".
-						"ON certificate = :certificate AND id = user_id");
-					$user_stmt->bindParam(':certificate', $_COOKIE['certificate']);
+				//以確認 session 中是否有user_id，來認定用戶是否登入
+				if( isset($_SESSION['user_id']) ){
+
+					//用 session 中的 user_id 尋找登入者的nickname
+					$user_stmt = $conn->prepare("SELECT nickname FROM $users_table WHERE id = :user_id");
+					$user_stmt->bindParam(':user_id', $_SESSION['user_id']);
 					$user_stmt->execute();
 					$user_stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-					//certificate比對正確，顯示撰寫留言框
-					if( $user_stmt->rowCount() === 1){
-						$user_row = $user_stmt->fetch();
-						$login_user_id = $user_row['id'];
+					$user_row = $user_stmt->fetch();
 			?>
 						
 						<div>
@@ -56,15 +53,9 @@
 							<input class="cmmt__btn" type="submit" value="送 出" />
 						</div>
 				
-			<?php
-					}else{  //如果certificate比對不成功，顯示登入框
-			?>
-
-						<input class="cmmt__btn" type="button" value="登入以使用留言功能" onclick="location.href='login.php'" />
 				
-			<?php
-					}						
-				}else{  //如果沒有設定cookie，顯示登入框
+			<?php					
+				}else{  //如果未登入，顯示登入框
 			?> 
 
 					<input class="cmmt__btn" type="button" value="登入以使用留言功能" onclick="location.href='login.php'" />
@@ -114,8 +105,8 @@
 								<div class="cmmt__time"><?php echo convert_time( $cmmt_row["created_by"] ) ?></div>
 								<div class="cmmt__edit-delete">
 
-			<?php  //如果這條留言的user_id等於當前用戶的 user_id，則顯示編輯/刪除按鈕
-					if( $cmmt_row['user_id'] === $login_user_id ){
+			<?php  //如果已登入，且這條留言的user_id等於當前用戶的 user_id，則顯示編輯/刪除按鈕
+					if( isset($_SESSION['user_id']) AND $cmmt_row['user_id'] === $_SESSION['user_id'] ){
 					
 						echo '<span class="cmmt__edit">編輯</span>&nbsp;/&nbsp;<span class="cmmt__delete">刪除</span>';
 					}
@@ -151,8 +142,8 @@
 									<div>	
 										<div class="cmmt__time"><?php echo convert_time( $sub_row["created_by"] ) ?></div>
 										<div class="cmmt__edit-delete">
-											<?php  //如果這條留言的user_id等於當前用戶的 user_id，則顯示編輯/刪除按鈕
-												if( $sub_row['user_id'] === $login_user_id ){
+											<?php  //如果已登入，且這條留言的user_id等於當前用戶的 user_id，則顯示編輯/刪除按鈕
+												if( isset($_SESSION['user_id']) AND $sub_row['user_id'] === $_SESSION['user_id'] ){
 												
 													echo '<span class="cmmt__edit">編輯</span>&nbsp;/&nbsp;<span class="cmmt__delete">刪除</span>';
 												}
@@ -175,7 +166,7 @@
 
 			<?php
 						//如果有登入，顯示回應按鍵
-						if( $login_user_id ){
+						if( isset($_SESSION['user_id']) ){
 				
 			?>
 
