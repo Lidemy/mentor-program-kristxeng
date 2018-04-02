@@ -8,11 +8,7 @@
 - 將異動資料 lock 住，可以避免在異動完成前，資料被其他操作讀取或是寫入，而造成數據不正確或是不一致的情況發生。    
 
 ## NoSQL 跟 SQL 的差別在哪裡？
-<<<<<<< HEAD
 SQL-based Database 即 RDBMS (關聯式資料庫系統)，在使用之前需要先定義 Schema，資料表內的欄位名稱和資料型態都是固定的，每個資料表間也透過固定的規則關聯起來。而 NoSQL 意思是 Not Only SQL，泛指非 SQL-based 的 Database，例如：MongoDB、Cassandra、Hbase 等。NoSQL 沒有 Schema 架構，因此無法支援標準的 SQL 語法來查詢資料，但也因為沒有 Schema 限制，在面對結構較不嚴謹的資料上較具彈性和效能。  
-=======
-SQL-based Database 即 RDBMS (關聯式資料庫系統)，在使用之前需要先定義 Schema，資料表內的欄位名稱和資料型態都是固定的，每個資料表間也透過固定的規則關聯起來。而 NoSQL 意思是 Not Only SQL，泛指非 SQL-based 的 Database，例如：MongoDB、Cassandra、Hbase、Redis 等。NoSQL 沒有 Schema 架構，因此無法支援標準的 SQL 語法來查詢資料，但也因為沒有 Schema 限制，在面對結構較不嚴謹的資料上較具彈性和效能。  
->>>>>>> 1b49b13748da6391f072cc15cd1caf92ca308081
 
 ## 資料庫的 ACID 是什麼？  
 資料庫的 ACID 是指在資料庫系統寫入或是更新資料的過程中，為保證交易( transaction )是正確可靠，而須具備的四項特性的英文開頭縮寫：  
