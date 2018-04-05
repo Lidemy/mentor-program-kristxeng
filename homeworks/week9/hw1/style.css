@@ -1,0 +1,128 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+.login__input, .cmmt__content, .cmmt__textarea {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 6px 0;
+  display: block;
+  border-radius: 4px;
+}
+
+.sub-cmmt__login-link, .sub-cmmt__collapse-toggle, .cmmt__edit, .cmmt__edited, .cmmt__delete, .cmmt__logout {
+  color: #3597DC;
+  font-size: 10px;
+  line-height: 24px;
+  transition: all 0.2s ease-out;
+}
+.sub-cmmt__login-link:hover, .sub-cmmt__collapse-toggle:hover, .cmmt__edit:hover, .cmmt__edited:hover, .cmmt__delete:hover, .cmmt__logout:hover {
+  cursor: pointer;
+  color: #196092;
+}
+
+body {
+  background-color: #EEF3F9;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 300;
+}
+
+.cmmt-box {
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #E6E6E6;
+}
+.cmmt__id {
+  display: none;
+}
+.cmmt__header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+.cmmt__nickname {
+  box-sizing: border-box;
+  font-weight: 400;
+}
+.cmmt__time {
+  display: inline-block;
+  font-weight: 300;
+  color: #CCCCCC;
+  margin-left: 20px;
+}
+.cmmt__edit-delete {
+  display: inline-block;
+  width: 72px;
+  font-size: 10px;
+  line-height: 24px;
+  text-align: right;
+}
+.cmmt__textarea {
+  border: 1px solid #E6E6E6;
+  height: 60px;
+  resize: none;
+}
+.cmmt__content {
+  border-top: 1px solid #E6E6E6;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  padding-left: 10px;
+}
+.cmmt__btn {
+  font-size: 10px;
+  line-height: 24px;
+  padding: 0 20px;
+}
+.sub-cmmt {
+  margin-left: 10%;
+  margin-top: 6px;
+  padding: 10px;
+}
+.sub-cmmt__main-author {
+  background-color: #EEF3F9;
+}
+.sub-cmmt__btn {
+  font-size: 8px;
+  line-height: 24px;
+  padding: 0 10px;
+  -webkit-appearance: none;
+}
+.sub-cmmt__collapse-toggle + div {
+  display: none;
+}
+.login__input {
+  line-height: 26px;
+  border: 1px solid #E6E6E6;
+}
+.login__input::placeholder {
+  padding-left: 3px;
+}
+.login__btn {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 16px;
+  font-weight: 300;
+  -webkit-appearance: none;
+}
+.login__title {
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+.login__title--centered {
+  text-align: center;
+}
+.login__title > a {
+  color: #3597DC;
+  font-size: 10px;
+}
+.login__title > a:hover {
+  cursor: pointer;
+  color: #196092;
+}
+.login__warning-toggle {
+  color: #D64848;
+  height: 21px;
+  visibility: hidden;
+}
