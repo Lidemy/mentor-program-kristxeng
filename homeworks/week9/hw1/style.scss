@@ -1,0 +1,213 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+//
+//        變數 
+//___________________
+$font-family: 'Noto Sans TC', sans-serif;
+
+$font-size: (
+    xs: 8px,
+    sm:  10px,
+    xl:  64px
+);
+
+$color:(
+    border:     #E6E6E6,
+    font:       #CCCCCC,
+    link:       #3597DC,
+    warning:    #D64848,
+    author:     #EEF3F9,
+    background: #EEF3F9
+);
+
+$border: 1px solid map-get($color, border);
+
+
+//
+//    placeholder 
+//___________________
+
+%content-style{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 6px 0;
+    display: block;
+    border-radius: 4px;
+}
+
+%cmmt__link{
+    color: map-get($color, link);
+    font-size: map-get($font-size, sm);
+    line-height: 24px;
+    transition: all 0.2s ease-out;
+
+    &:hover{
+        cursor: pointer;
+        color: darken(map-get($color, link), 20%);
+    }
+}
+
+
+
+//                  
+//  for index.php   
+//__________________
+
+body {
+    background-color: map-get($color, background);
+    font-family: $font-family;
+}
+
+.title{
+    font-size: map-get($font-size, xl);
+    font-weight: 300;
+}
+.cmmt{
+
+    &-box{
+        background-color: #FFFFFF;
+        box-sizing: border-box;
+        border: $border;
+    }
+
+    &__id{
+        display: none;
+    }
+
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10px;
+    }
+
+    &__nickname{
+        box-sizing: border-box;
+        font-weight: 400;
+    }
+
+    &__time{
+        display: inline-block;
+        font-weight: 300;
+        color: map-get($color, font);
+        margin-left: 20px;
+    }
+
+    &__edit-delete{
+        display: inline-block;
+        width: 72px;
+        font-size: map-get($font-size, sm);
+        line-height: 24px;
+        text-align: right;
+    }
+
+    &__textarea{
+        @extend %content-style;
+        border: $border;
+        height: 60px;
+        resize: none;
+    }
+
+    &__content{
+        @extend %content-style;
+        border-top: $border;
+        font-weight: 300;
+        overflow-wrap: break-word;
+        padding-left: 10px;
+    }
+
+    &__btn{
+        font-size: map-get($font-size, sm);
+        line-height: 24px;
+        padding: 0 20px;
+    }
+
+    &__edit,
+    &__edited,
+    &__delete,
+    &__logout{
+        @extend %cmmt__link;
+    }
+
+}
+
+.sub-cmmt{
+    margin-left: 10%;
+    margin-top: 6px;
+    padding: 10px;
+
+    &__main-author{
+        background-color: map-get($color, author);
+    }
+
+    &__btn{
+        font-size: map-get($font-size, xs);
+        line-height: 24px;
+        padding: 0 10px;
+        -webkit-appearance: none;
+    }
+
+    &__collapse-toggle{
+        @extend %cmmt__link;
+
+        &+div{
+            display:none;
+        }
+    }
+   
+    &__login-link{
+        @extend %cmmt__link;
+    }
+}
+
+
+//                              
+//  for reg.php & login.php     
+//____________________________
+
+.login{
+
+    &__input{
+        @extend %content-style;
+        line-height: 26px;
+        border: $border;
+
+        &::placeholder{
+            padding-left: 3px;
+        }
+    }
+
+    &__btn{
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 16px;
+        font-weight: 300;
+        -webkit-appearance: none;
+    }
+
+    &__title{
+        font-size: map-get($font-size, sm);
+        font-weight: 400;
+        margin-top: 20px;
+
+        &--centered{
+            text-align: center;
+        }
+
+        &>a{
+            color: map-get($color, link);
+            font-size: map-get($font-size, sm);
+
+            &:hover{
+                cursor: pointer;
+                color: darken(map-get($color, link), 20%)
+            }
+        }
+    }
+
+    &__warning-toggle{
+        color: map-get($color, warning);
+        height: 21px;
+        visibility: hidden;
+    }
+
+}
