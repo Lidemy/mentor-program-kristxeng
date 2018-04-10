@@ -1,0 +1,55 @@
+//
+//        變數 
+//___________________
+$font-family: 'Noto Sans TC', sans-serif;
+
+$font-size: (
+    xs: 8px,
+    sm:  10px,
+    xl:  64px
+);
+
+$color:(
+    border:     #E6E6E6,
+    font:       #CCCCCC,
+    link:       #3597DC,
+    warning:    #D64848,
+    author:     #EEF3F9,
+    background: #EEF3F9
+);
+
+$border: 1px solid map-get($color, border);
+
+
+
+//                  
+//  for index.php   
+//__________________
+
+body {
+    background-color: map-get($color, background);
+    font-family: $font-family;
+}
+
+.title{
+    font-size: map-get($font-size, xl);
+    font-weight: 300;
+}
+.cmmt{
+
+    &-box{
+        background-color: #FFFFFF;
+        box-sizing: border-box;
+        border: $border;
+    }
+
+    &__time{
+        display: inline-block;
+        font-weight: 300;
+        color: map-get($color, font);
+        margin-left: 20px;
+    }
+
+}
+
+
