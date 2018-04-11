@@ -5,7 +5,8 @@
 }
 
 *{
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
 body{
@@ -25,7 +26,8 @@ body{
 	max-width: var(--todo-width);
 	margin: 0 auto;
 	background-color: white;
-	box-shadow: 2px 1px 1px rgba(0, 0, 0, .2);
+	-webkit-box-shadow: 2px 1px 1px rgba(0, 0, 0, .2);
+	        box-shadow: 2px 1px 1px rgba(0, 0, 0, .2);
 }
 
 .todo-item{
@@ -34,8 +36,12 @@ body{
 	border-bottom: 1px solid #DDDDDD;
 	line-height: 56px;
 	padding: 6px 16px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	   -ms-flex-align: center;
+	      align-items: center;
 
 }
 
@@ -70,6 +76,30 @@ body{
 
 }
 
+::-webkit-input-placeholder{
+	color: #DDDDDD;
+	font-size: 20px;
+	font-family: 'Heiti TC', 'Microsoft JhengHei' , sans-serif;
+	padding-left: 6px;
+
+}
+
+:-ms-input-placeholder{
+	color: #DDDDDD;
+	font-size: 20px;
+	font-family: 'Heiti TC', 'Microsoft JhengHei' , sans-serif;
+	padding-left: 6px;
+
+}
+
+::-ms-input-placeholder{
+	color: #DDDDDD;
+	font-size: 20px;
+	font-family: 'Heiti TC', 'Microsoft JhengHei' , sans-serif;
+	padding-left: 6px;
+
+}
+
 ::placeholder{
 	color: #DDDDDD;
 	font-size: 20px;
@@ -88,13 +118,15 @@ body{
 	font-family: 'Poiret One', cursive;
 	text-align: center;
 	line-height: 32px;
-	box-shadow: 2px 1px 1px rgba(0, 0, 0, .1);
+	-webkit-box-shadow: 2px 1px 1px rgba(0, 0, 0, .1);
+	        box-shadow: 2px 1px 1px rgba(0, 0, 0, .1);
 
 }
 
 .todo__add-btn:active{
 	background-color: #d0d2d6;
-	box-shadow: none;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
 }
 
 .todo__completed-btn{
@@ -102,7 +134,8 @@ body{
 	height: 20px;
 	border: 1px solid #c5c5c5;
 	border-radius: 4px;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	text-align: center;
 	line-height: 20px;
 	font-size: 28px;
@@ -120,21 +153,28 @@ body{
 	margin: 0 10px;
 	//刪除線樣式設定
 	text-decoration-style: solid;
-	text-decoration-color: var(--text-color);
+	-webkit-text-decoration-color: var(--text-color);
+	        text-decoration-color: var(--text-color);
 	//下面三行限制文字顯示長度，超過的部分顯示「...」
 	overflow:hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 }
 
 .todo__content--completed{
-	text-decoration-line: line-through;
+	-webkit-text-decoration-line: line-through;
+	        text-decoration-line: line-through;
 }
 
 .todo__del-btn{
 	width: 20px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	   -ms-flex-align: center;
+	      align-items: center;
 }
 
 .todo__del-btn>img{
@@ -150,7 +190,7 @@ body{
 .unselectable{
 	//讓模擬的假按鍵內容不被當文字選取
 	-webkit-user-select: none;  /* Chrome all / Safari all */
-	-moz-user-select: none;     /* Firefox all */
-	-ms-user-select: none;      /* IE 10+ */
- 	user-select: none;          /* Likely future */    
+       -moz-user-select: none;     /* Firefox all */
+	    -ms-user-select: none;      /* IE 10+ */
+	        user-select: none;          /* Likely future */    
 }
