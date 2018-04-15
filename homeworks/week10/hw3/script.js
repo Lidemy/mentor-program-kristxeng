@@ -40,46 +40,40 @@ $(document).ready( ()=>{
     var index = $('.todo-item').index( $(e.target).parents('.todo-item') ) - 1;
 
     //將點擊完成的待辦事項標記，重複點擊可以取消
-    if( list[index]['isCompleted'] === false ){
-
-    	list[index]['isCompleted'] = true;
-
-    }else{
-
-    	list[index]['isCompleted'] = false;
-    }
-    
+    list[index]['isCompleted'] = list[index]['isCompleted'] ? false : true;
 
     render();
 
   });
 });
 
-function render(){
+function render(){ 
+
   //每次 render 之前，先把item清空，但需保留第一個item(撰寫框)
   $('.todo-item:gt(0)').remove();
 
   for(var i=0; i<list.length; i++){
 
-    if( !list[i]['isCompleted'] ){
-      //未完成的待辦事項
-      $('.todo-item:last').after(`
-        <div class="todo-item">
-          <div class="todo__completed-btn unselectable"></div>
-          <div class="todo__content">${list[i]['text']}</div>
-          <div class="todo__del-btn"><img src="close.jpg" /></div>
-        </div>
-      `)
-    }else{
-      //已完成的待辦事項
-      $('.todo-item:last').after(`
-        <div class="todo-item">
-          <div class="todo__completed-btn unselectable">&radic;</div>
-          <div class="todo__content todo__content--completed">${list[i]['text']}</div>
-          <div class="todo__del-btn"><img src="close.jpg" /></div>
-        </div>
-      `)
+    // 用來設定方塊內的打勾符號
+    var checkSign = '';
+
+    // 用來設定 completed class
+    var isCompletedClass = '';
+
+    if( list[i]['isCompleted'] ){
+      
+      checkSign = '&radic;';
+      isCompletedClass = 'todo__content--completed';
+
     }
+
+    $('.todo-item:last').after(`
+      <div class="todo-item">
+        <div class="todo__completed-btn unselectable">${checkSign}</div>
+        <div class="todo__content ${isCompletedClass}">${list[i]['text']}</div>
+        <div class="todo__del-btn"><img src="close.jpg" /></div>
+      </div>
+    `)
   }
   
 }
