@@ -54,19 +54,13 @@ function render(){
 
   for(var i=0; i<list.length; i++){
 
-    // 用來設定方塊內的打勾符號
-    var checkSign = '';
+    // 設定方塊內的打勾符號
+    var checkSign = list[i]['isCompleted'] ? '&radic;' : '';
 
-    // 用來設定 completed class
-    var isCompletedClass = '';
+    // 設定 completed class
+    var isCompletedClass = list[i]['isCompleted'] ? 'todo__content--completed' : '';
 
-    if( list[i]['isCompleted'] ){
-      
-      checkSign = '&radic;';
-      isCompletedClass = 'todo__content--completed';
-
-    }
-
+    //串接待辦事項方塊
     $('.todo-item:last').after(`
       <div class="todo-item">
         <div class="todo__completed-btn unselectable">${checkSign}</div>
