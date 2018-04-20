@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+  	<%- include('head', {title: '登入', jsfile: 'login'}) %>
+  </head>
+  <body>
+    <div class="login-container container-fluid d-flex justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="title mt-5">登入</div>
+          <div class="cmmt-box bg-white p-5">
+
+            <div class="login__title">請輸入您的使用者名稱：</div>
+            <input class="login__input" name="username" type="text" placeholder="帳號" />
+
+            <div class="login__title">請輸入您的密碼：</div>
+            <input class="login__input" name="password" type="password" placeholder="密碼" />
+
+            <div class="login__warning-toggle"></div>
+            <input class="cmmt__btn login__btn btn btn-primary" type="button" value="Sign In" />
+
+            <div class="login__title login__title--centered"><a href="/reg">還沒有帳號？ 請按此註冊</a></div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>	

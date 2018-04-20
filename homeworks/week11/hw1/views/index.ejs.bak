@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <%- include('head', {title: '留言板', jsfile: 'index'}) %>
+  </head>
+  <body>
+  
+    <div class="container-fluid">
+      <div class="title col-lg-6 col-sm-10 mx-auto mt-5">留言板</div>
+
+      <!--  主要留言撰寫框 START  -->
+      <div class="cmmt-box col-lg-6 col-sm-10 mx-auto mb-2 p-4">
+
+        <%# 驗證登入狀態，如果已登入顯示留言撰寫框 %>
+        <% if( user.user_id !== undefined){ %>
+
+          <div>
+            <div class="cmmt__nickname">
+              <%= user.nickname %>
+              <span class="cmmt__logout">[ 登出 ]</span>
+            </div>
+            <textarea class="cmmt__textarea" name="content" placeholder="留言內容" required></textarea>
+            <input type="hidden" name="parent_id" value='0' />
+            <input class="cmmt__btn btn btn-primary" type="submit" value="送 出" />
+          </div>
+
+        <%# 未登入提示登入按鍵 %>
+        <% } else { %>
+
+          <input class="cmmt__btn btn btn-primary" type="button" value="登入以使用留言功能" onclick="location.href='login.php'" />
+
+        <% } %>
+      </div>  <!--  主要留言撰寫框 END  -->
+
+      <%# 遞迴顯示主留言串 %>
+      <% for(var i=0; i<10; i++  ){ %>
+
+        <!--  主要留言外框 START  -->
+        <div class="cmmt-box col-lg-6 col-sm-10 mx-auto mb-2 p-4">
+
+          <!--  主留言 START  -->
+          <div class="cmmt__header">
+            <div class="cmmt__nickname"><%= cmmt[i].nickname %></div>
+            <div>
+
+              <div class="cmmt__time"><%= cmmt[i].created_by %></div>
+              <div class="cmmt__edit-delete">
+
+                <%# 判斷是否顯示編輯/刪除按鍵 %>
+                <% if( cmmt[i].user_id === user.user_id ){ %>
+                  <span class="cmmt__edit">編輯</span>&nbsp;/&nbsp;<span class="cmmt__delete">刪除</span>
+                <% } %>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="cmmt__content"><%= cmmt[i].content %></div>
+          <div class="cmmt__id"><%= cmmt[i].cmmt_id %></div>
+
+          <%#  遞迴顯示子留言串 START %>
+         <% for(var j=0; j<subCmmt.length; j++){ 
+              if(subCmmt[j].parent_id === cmmt[i].cmmt_id){
+          %>
+            <div class="sub-cmmt <% if(subCmmt[j].user_id === cmmt[i].user_id){ %>sub-cmmt__main-author<% } %> col-11">
+              <div class="cmmt__header">
+                <div class="cmmt__nickname"><%= subCmmt[j].nickname %></div>
+                <div> 
+
+                  <div class="cmmt__time"><%= subCmmt[j].created_by %></div>
+                  <div class="cmmt__edit-delete">
+
+                    <%# 判斷是否顯示編輯/刪除按鈕 %>
+                    <% if(subCmmt[j].user_id === user.user_id){ %>
+                      <span class="cmmt__edit">編輯</span>&nbsp;/&nbsp;<span class="cmmt__delete">刪除</span>
+                    <% } %>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="cmmt__content"><%= subCmmt[j].content %></div>
+              <div class="cmmt__id"><%= subCmmt[j].cmmt_id %></div>
+            </div>
+          <% }} %> <%# 遞迴顯示子留言串 END %>
+
+
+          <!--   子留言的撰寫框 START  -->
+          <div class="sub-cmmt">
+
+            <% if(user.user_id !== undefined){ %>
+
+              <div class="sub-cmmt__collapse-toggle">回應[+]</div>
+              <div>
+                <div class="cmmt__nickname"><%=user.nickname %></div>
+                <textarea class="cmmt__textarea" name="content" placeholder="留言內容" required></textarea>
+                <input type="hidden" name="parent_id" value=<%= cmmt[i].cmmt_id %> />
+                <input class="cmmt__btn sub-cmmt__btn btn btn-primary" type="submit" value="送 出" />
+              </div>
+
+            <% }else{ %>
+
+              <a class="sub-cmmt__login-link text-primary" onclick="location.href='login.php'">
+                登入以發表回應 
+              </a>
+
+            <% } %>
+
+          </div> <!-- 子留言撰寫框 END -->
+        </div> <!-- 主要留言外框 END  -->
+
+      <% } %> <%# 遞迴顯示主留言串 END %>
+
+      <!-- Bootstrap 分頁 START -->
+
+      <%# 預設定上下頁按鍵參數 %>
+      <%
+        var prevPageDisable = '',
+            prevPageLink = '/pages/'+ (currentPage - 1),
+            nextPageDisable = '',
+            nextPageLink = '/pages/'+ (currentPage + 1);
+
+        if(currentPage === 1){
+          prevPageDisable = 'disabled';
+          prevPageLink = '#';
+        }
+
+        if(currentPage === totalPages){
+          nextPageDisable = 'disabled';
+          nextPageLink = '#';
+        }
+      %>
+
+      <nav aria-label="comment borad pages" class="my-5">
+        <ul class="pagination justify-content-center">
+
+          <%# 顯示上一頁按鍵，並在第一頁失效 %>
+          <li class="page-item <%= prevPageDisable %> ">
+            <a class="page-link" href="<%= prevPageLink %>" aria-label="Previous" tabindex="-1">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          <%# 顯示各頁連結，並在當頁失效 %>
+          <% for( let k=1; k<=totalPages; k++ ){ %>
+            <li class="page-item <% if(k === currentPage){ %>disabled<%}%>">
+              <a class="page-link" href="/pages/<%= k %>"><%= k %></a>
+            </li>
+          <% } %>
+
+          <%# 顯示下一頁連結，並在最後一頁失效 %>
+          <li class="page-item <%= nextPageDisable %>">
+            <a class="page-link" href="<%= nextPageLink %>" aria-label="Next" tabindex="-1">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav> <!-- Bootstrap 分頁 END -->
+
+    </div> <!-- END of div.container-fluid  -->
+  </body>
+</html>
